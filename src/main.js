@@ -6,13 +6,15 @@ import router from './router'
 import axios from 'axios'
 import store from './store'
 import '../static/currency.css'
+import '../static/js/rem.js'
 
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
-import { Swipe, SwipeItem, Loadmore, Button,Lazyload } from 'mint-ui';
+import { Swipe,SwipeItem,Loadmore,Button,Lazyload } from 'mint-ui';
 
 Vue.use(Lazyload);
+Vue.component(Loadmore.name, Loadmore)
 Vue.component(Button.name, Button);
 Vue.component(Loadmore.name, Loadmore);
 Vue.component(Swipe.name, Swipe);

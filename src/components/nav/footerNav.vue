@@ -1,16 +1,22 @@
 <template>
-  	<div>
+  	<div class="footer">
 		<ul class="clearfix">
 			<li>
-				<router-link to='/home'>
+				<router-link to='/index'>
 					<i class="iconfont icon-shouye"></i>
 					<span>首页</span>
 				</router-link>
 			</li>
 			<li>
-				<router-link to='/classification'>
+				<router-link to='/distinguish'>
 					<i class="iconfont icon-fenlei"></i>
 					<span>分类</span>
+				</router-link>
+			</li>
+			<li>
+				<router-link to='/shoppingCart'>
+					<i class="iconfont icon-gouwuche1"></i>
+					<span>购物车</span>
 				</router-link>
 			</li>
 			<li>
@@ -25,15 +31,12 @@
 
 <script>
 	
-
-	export default {
-	  data () {
-	    return {}
-	  }
-	}
 </script>
 
 <style scoped>
+.footer {
+	padding-bottom: 1.5rem;
+}
 ul {
     position: fixed;
     bottom: 0;
@@ -45,9 +48,9 @@ ul {
 }
 ul li {
     float: left;
-    width: 33.3%;
+    width: 25%;
     height: 1.5rem;
-    font-size: .3rem;
+    font-size: .2rem;
     text-align: center;
     display: flex;
     justify-content: center;

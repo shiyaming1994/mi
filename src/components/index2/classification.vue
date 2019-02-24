@@ -29,13 +29,16 @@
 </template>
 
 <script>
+
 import footerNav from '../nav/footerNav'
 import headerName from '../header/headerName'
 export default {
     data() {
         return {
             list:[],
-            list_title:[]
+            list_title:[],
+            allLoaded:false,
+            isAutoFill:false
         }
     },
     created(){
@@ -53,6 +56,9 @@ export default {
         },
         goDetails(id){
             this.$router.push("/details/" + id)
+        },
+        loadBottom(){
+            console.log(111);
         }
 　　　　},
     components:{
