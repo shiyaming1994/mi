@@ -1,0 +1,17 @@
+.goods-img {
+	display: flex;
+}
+.goods-img .my-gallery {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+.goods-img .my-gallery>figure {
+	width: 33.3%;
+	float: left;
+	margin: 0;
+}
+.goods-img .my-gallery figure img {
+	width: 100%;
+	vertical-align: middle;
+}

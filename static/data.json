@@ -1,0 +1,152 @@
+{
+  "list": [
+  {
+    "id": "1",
+    "title": "测试1",
+    "info": "描述1",
+    "price": "19.9",
+    "img": "https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80"
+  },
+  {
+    "id": "2",
+    "title": "测试2",
+    "info": "描述2",
+    "price": "19.9",
+    "img": "https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80"
+  },
+  {
+    "id": "3",
+    "title": "测试3",
+    "info": "描述3",
+    "price": "19.9",
+    "img": "https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80"
+  },
+  {
+    "id": "3",
+    "title": "测试3",
+    "info": "描述3",
+    "price": "19.9",
+    "img": "https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80"
+  },
+  {
+    "id": "3",
+    "title": "测试3",
+    "info": "描述3",
+    "price": "19.9",
+    "img": "https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80"
+  },
+  {
+    "id": "3",
+    "title": "测试3",
+    "info": "描述3",
+    "price": "19.9",
+    "img": "https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80"
+  },
+  {
+    "id": "3",
+    "title": "测试3",
+    "info": "描述3",
+    "price": "19.9",
+    "img": "https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80"
+  },
+  {
+    "id": "4",
+    "title": "测试4",
+    "info": "描述4",
+    "price": "19.9",
+    "img": "https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80"
+  }],
+  "list_title":[
+  {
+    "id": "1101",
+    "name": "list-1"
+  },
+  {
+    "id": "1102",
+    "name": "list-2"
+  },
+  {
+    "id": "1102",
+    "name": "list-2"
+  },
+  {
+    "id": "1102",
+    "name": "list-2"
+  },
+  {
+    "id": "1102",
+    "name": "list-2"
+  },
+  {
+    "id": "1102",
+    "name": "list-2"
+  },
+  {
+    "id": "1102",
+    "name": "list-2"
+  },
+  {
+    "id": "1102",
+    "name": "list-2"
+  },
+  {
+    "id": "1102",
+    "name": "list-2"
+  },
+  {
+    "id": "1102",
+    "name": "list-2"
+  },
+  {
+    "id": "1102",
+    "name": "list-2"
+  },
+  {
+    "id": "1102",
+    "name": "list-2"
+  },
+  {
+    "id": "1102",
+    "name": "list-2"
+  },
+  {
+    "id": "1103",
+    "name": "list-3"
+  }
+  ],
+  "goods_img":[
+  {
+    "id":"1",
+    "src":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551532382&di=6b17707204e28f06bceb218fbd568122&imgtype=jpg&er=1&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201806%2F14%2F20180614231142_TmCh8.jpeg"
+  },
+  {
+    "id":"2",
+    "src":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551532458&di=8ca532aac3b77b3c277080813373a10c&imgtype=jpg&er=1&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201410%2F12%2F20141012230825_VAHsd.jpeg"
+  },
+  {
+    "id":"3",
+    "src":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550937752542&di=da107520605ed674839b0a2b6ef71b09&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170303%2F2430f557b3bf48888993c9307270baca_th.jpg"
+  },
+  {
+    "id":"4",
+    "src":"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=319245383,2018749557&fm=26&gp=0.jpg"
+  },
+  {
+    "id":"5",
+    "src":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551533010&di=7f0e634f52e7477aa30309edfef3b262&imgtype=jpg&er=1&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb984b0a2e85d2d8bd3835dfebb2aa5a254bdf53f4a67e-xJQOF5_fw658"
+  }
+  ],
+  "comment": [
+  {
+    "id": "1",
+    "name": "诸葛铁牛",
+    "time": "2019-10-10",
+    "content": "哈哈哈"
+  },
+  {
+    "id": "2",
+    "name": "欧阳拴住",
+    "time": "2019-12-12",
+    "content": "咯咯咯咯咯咯"
+  }]
+}

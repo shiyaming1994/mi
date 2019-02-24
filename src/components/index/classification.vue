@@ -4,42 +4,24 @@
         <div class="category-info">
             <div class="category-info-left">
                 <ul>
-                    <li>list-1<input type="hidden" value="1"></li>
-                    <li>list-2<input type="hidden" value="1"></li>
-                    <li>list-3<input type="hidden" value="1"></li>
-                    <li>list-4<input type="hidden" value="1"></li>
-                    <li>list-5<input type="hidden" value="1"></li>
+                    <li v-for="(item, index) in list_title" @click="getList(item.id)" :class="index == 0?'now':''">{{ item.name }}</li>
                 </ul>
             </div>
             <div class="category-info-right">
-                <a href="javascript:;">
-                    <div class="category-list clearfix">
+                <div v-for="(item, index) in list">
+                    <div class="category-list clearfix" @click="goDetails(item.id)">
                         <div class="category-list-left left">
-                            <div class="category-list-left-title">name</div>
-                            <div class="category-list-left-info">描述</div>
+                            <div class="category-list-left-title">{{ item.title }}</div>
+                            <div class="category-list-left-info">{{ item.info }}</div>
                             <div class="category-list-left-money clearfix">
-                                <div class="category-list-left-money-new left">￥19.9</div>
+                                <div class="category-list-left-money-new left">￥{{ item.price }}</div>
                             </div>
                         </div>
                         <div class="category-list-right right">
-                            <img src="https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80" alt="">
+                            <img v-lazy="item.img" alt="">
                         </div>
                     </div>
-                </a>
-                <a href="javascript:;">
-                    <div class="category-list clearfix">
-                        <div class="category-list-left left">
-                            <div class="category-list-left-title">name</div>
-                            <div class="category-list-left-info">描述</div>
-                            <div class="category-list-left-money clearfix">
-                                <div class="category-list-left-money-new left">￥19.9</div>
-                            </div>
-                        </div>
-                        <div class="category-list-right right">
-                            <img src="https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80" alt="">
-                        </div>
-                    </div>
-                </a>
+                </div>
             </div>
         </div>
         <footer-nav></footer-nav>
@@ -50,10 +32,35 @@
 import footerNav from '../nav/footerNav'
 import headerName from '../header/headerName'
 export default {
-  components:{
-    footerNav,
-    headerName
-  }
+    data() {
+        return {
+            list:[],
+            list_title:[]
+        }
+    },
+    created(){
+       this.getList(0)
+    },
+    methods: {
+　　　　　　 getList(id){
+            this.$http.get("../../../static/data.json?id=" + id)
+                .then(res=>{
+                    this.list = res.data.list
+                    this.list_title = res.data.list_title
+                }).catch(function(error){
+                    console.log("error init."+error)
+                })
+        },
+        goDetails(id){
+            this.$router.push("/details/" + id)
+        }
+　　　　},
+    components:{
+        footerNav,
+        headerName
+    }
+    
+
 }
 </script>
 
@@ -142,5 +149,13 @@ export default {
     display: block;
     width: 100%;
     height: 100%;
+}
+.now {
+    color: skyblue;
+}
+img[lazy=loading] {
+  width: 40px;
+  height: 300px;
+  margin: auto;
 }
 </style>

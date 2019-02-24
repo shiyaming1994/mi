@@ -2,7 +2,7 @@
   	<div>
 		<ul class="clearfix">
 			<li>
-				<router-link to='/'>
+				<router-link to='/home'>
 					<i class="iconfont icon-shouye"></i>
 					<span>首页</span>
 				</router-link>
@@ -61,7 +61,7 @@ ul li i {
     display: block;
     font-size: .4rem !important;
 }
-.router-link-exact-active {
+.router-link-active {
 	color: skyblue;
 }
 </style>

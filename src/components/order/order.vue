@@ -9,57 +9,78 @@
             </div>
             <div class="order-Statistics">
                 <ul class="clearfix">
-                    <li class="order-class-now">已作答</li>
-                    <li>未作答</li>
+                    <li v-for="(item, index) in todos" @click="selectSort(item)" :class="{'order-class-now':item.show==true}">
+                        {{ item.text }}
+                    </li>
+                    <!-- <li class="order-class-now">已作答</li>
+                    <li>未作答</li> -->
                 </ul>
             </div>
         </div>
-        <div class="order-list-info">
-            <div class="order-list-info-top">15485414</div>
-            <div class="order-list-info-center clearfix">
-                <div class="order-list-info-center-img left">
-                    <img src="https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80" alt="">
+        <div>
+            <div class="order-list-info">
+                <div class="order-list-info-top">15485414</div>
+                <div class="order-list-info-center clearfix">
+                    <div class="order-list-info-center-img left">
+                        <img src="https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80" alt="">
+                    </div>
+                    <div class="order-list-right right">
+                        <div class="order-list-right-title">name</div>
+                        <div class="order-list-right-info">描述</div>
+                        <div class="order-list-right-money">￥19.9</div>
+                    </div>
                 </div>
-                <div class="order-list-right right">
-                    <div class="order-list-right-title">name</div>
-                    <div class="order-list-right-info">描述</div>
-                    <div class="order-list-right-money">￥19.9</div>
-                </div>
-            </div>
-            <div class="order-list-info-footer clearfix">
-                <div class="order-list-info-footer-time left">答卷name</div>
-                <div class="order-list-info-footer-OK right">已作答</div>
-                <div class="order-list-info-footer-num clearfix">
-                    <div class="order-list-info-footer-num-left left">得分</div>
-                    <div class="order-list-info-footer-num-right right">50</div>
-                </div>
-                <div class="order-list-info-footer-evaluate clearfix">
-                    <div class="order-list-info-footer-evaluate-left left">测试结果</div>
-                    <div class="order-list-info-footer-evaluate-right right">测试结果内容测试结果内容测试结果内容测试结果内容测试结果内容</div>
+                <div class="order-list-info-footer clearfix">
+                    <div class="order-list-info-footer-time left">答卷name</div>
+                    <div class="order-list-info-footer-OK right">已作答</div>
+                    <div class="order-list-info-footer-num clearfix">
+                        <div class="order-list-info-footer-num-left left">得分</div>
+                        <div class="order-list-info-footer-num-right right">50</div>
+                    </div>
+                    <div class="order-list-info-footer-evaluate clearfix">
+                        <div class="order-list-info-footer-evaluate-left left">测试结果</div>
+                        <div class="order-list-info-footer-evaluate-right right">测试结果内容测试结果内容测试结果内容测试结果内容测试结果内容</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="order-list-info">
-            <div class="order-list-info-top">15485414</div>
-            <div class="order-list-info-center clearfix">
-                <div class="order-list-info-center-img left">
-                    <img src="https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80" alt="">
+        <div>
+            <div class="order-list-info">
+                <div class="order-list-info-top">15485414</div>
+                <div class="order-list-info-center clearfix">
+                    <div class="order-list-info-center-img left">
+                        <img src="https://imgco.xinli001.com/ceping/lingxi/scalePool/161f3ca64f4a4b2b9b4670f54a322c6a.png?x-oss-process=image/resize,p_80/quality,Q_80" alt="">
+                    </div>
+                    <div class="order-list-right right">
+                        <div class="order-list-right-title">name</div>
+                        <div class="order-list-right-info">描述</div>
+                        <div class="order-list-right-money">￥19.9</div>
+                    </div>
                 </div>
-                <div class="order-list-right right">
-                    <div class="order-list-right-title">name</div>
-                    <div class="order-list-right-info">描述</div>
-                    <div class="order-list-right-money">￥19.9</div>
+                <div class="order-list-info-footer clearfix">
+                    <div class="order-list-info-footer-NO right">去作答</div>
                 </div>
-            </div>
-            <div class="order-list-info-footer clearfix">
-                <div class="order-list-info-footer-NO right">去作答</div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-
+export default {
+    data() {
+        return {
+            todos: [
+                { text: '已作答',show:true },
+                { text: '未作答',show:false }
+            ]
+        }
+    },
+    methods: {
+　　　　　　selectSort (item) {
+　　　　　　　　item.show = !item.show;
+　　　　　　}
+　　　　}
+}
 </script>
 
 <style scoped>
