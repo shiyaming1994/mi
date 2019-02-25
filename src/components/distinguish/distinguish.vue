@@ -1,6 +1,6 @@
 <template>
 	<div>
-        <header-nav></header-nav>
+        <header-nav>分类</header-nav>
 		<div class="category-info">
             <div class="category-info-left">
                 <ul>

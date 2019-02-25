@@ -8,7 +8,7 @@
   				</div>
   			</div>
   		</div>
-		<swiper></swiper>
+		<swiper :rotationChart="rotationChart"></swiper>
 		<div class="index-nav-list">
 			<ul class="clearfix">
 				<li>
@@ -45,7 +45,7 @@
   		</div>
   		<div class="line"></div>
   		<div class="goods clearfix">
-  			<div class="goods-list" v-for="(item,index) in list">
+  			<router-link class="goods-list" v-for="(item,index) in list" :to="'/commodity/detail/'+item.id" :key="index">
   				<div class="goods-list-img">
   					<img :src="item.img" alt="">
   				</div>
@@ -54,7 +54,7 @@
   					<div class="goods-list-content">{{ item.content }}</div>
   					<div class="goods-list-price">￥{{ item.price }}</div>
   				</div>
-  			</div>
+  			</router-link>
   		</div>
 		<footer-nav></footer-nav>
 	</div>
@@ -65,22 +65,31 @@ import swiper from '../swiper/swiper'
 export default {
 	data(){
 		return {
-			list:[]
+			list:[],
+      rotationChart:[]
 		}
 	},
 	created(){
-		this.getList()
+    this.getList(),
+		this.getWheel()
 	},
 	methods:{
 		getList(){
             this.$http.get("../../../static/homeGoods.json")
                 .then(res=>{
                     this.list = res.data
-                    console.log(this.list);
                 }).catch(function(error){
                     console.log("error init."+error)
                 })
-        }
+        },
+    getWheel(){
+        this.$http.get("../../../static/rotationChart.json")
+            .then(res=>{
+                this.rotationChart = res.data
+            }).catch(function(error){
+                console.log("error init."+error)
+            })
+    }
 	},
 	computed:{},
 	components:{

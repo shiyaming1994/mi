@@ -6,7 +6,7 @@
 					<i class="iconfont icon-return1"></i>
 				</div>
 			</div>
-			<div class="header-title">分类</div>
+			<div class="header-title"><slot></slot></div>
 			<div>
 				<div class="header-search">
 					<i class="iconfont icon-sousuo"></i>
