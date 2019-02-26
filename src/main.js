@@ -7,6 +7,8 @@ import axios from 'axios'
 import store from './store'
 import '../static/currency.css'
 import '../static/js/rem.js'
+import '../node_modules/mui/dist/js/mui.min.js'
+import '../node_modules/mui/dist/css/mui.css'
 
 Vue.prototype.$http = axios
 

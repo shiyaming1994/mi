@@ -100,7 +100,7 @@ export default {
 </script>
 <style scoped>
 .header {
-	display: -webkit-box;
+	 display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;

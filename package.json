@@ -10,7 +10,6 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "ajv": "^6.9.1",
     "axios": "^0.18.0",
     "express": "^4.16.4",
     "mint-ui": "^2.2.13",
