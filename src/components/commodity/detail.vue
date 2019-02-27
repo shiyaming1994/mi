@@ -22,50 +22,49 @@
 			<img src="//i8.mifile.cn/v1/a1/84269c10-cf27-5c8c-6ad8-338ae645fb6d.webp?w=1080&h=1816&bg=2C213C" alt="">
 			<img src="//i8.mifile.cn/v1/a1/de2e8c3a-cf2f-60d8-f4c4-8437c9920685.webp?w=1080&h=829&bg=0D0E11" alt="">
 		</div>
-		<div :class="{ show: byInfo }" class="buy-info-box">
-			<div class="buy-info" :class="{ 'by-animation': byInfo }">
-				<div class="buy-info-guanbi">
-					<i class="iconfont icon-cuowu" @click="byInfoHide"></i>
-				</div>
-				<div class="buy-info-goods">
-					<div class="buy-info-goods-img">
-						<img src="" alt="">
-					</div>
-					<div class="buy-info-goods-content">
-						<div class="buy-info-goods-content-price">￥555</div>
-						<div class="buy-info-goods-content-name">小米</div>
-					</div>
-				</div>
-				<div class="buy-option-info">
-					<div class="option-title">版本</div>
-					<div class="options-group">
-						<div class="option-item">
-							<p>6GB+128GB</p>
-							<p>2499元</p>
-						</div>
-						<div class="option-item">
-							<p>8GB+128GB</p>
-							<p>3499元</p>
-						</div>
-					</div>
-					<div class="option-title">颜色</div>
-					<div class="options-group">
-						<div class="options-item-color">
-							<p>白色</p>
-							<p>黑色</p>
-						</div>
-					</div>
-					<div class="option-count">
-						<div class="option-count-title">购买数量</div>
-					  	<div class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='10'>
-					  	  <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
-					  	  <input class="mui-numbox-input" type="number" />
-					  	  <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
-					  	</div>
-					</div>
-				</div>
-				<div class="buy-btn">加入购物车</div>
+		<div :class="{ show: byInfo }" class="buy-info-box"></div>
+		<div :class='["buy-info",byInfo?"by-animation-show" : "by-animation-hide"]'>
+			<div class="buy-info-guanbi">
+				<i class="iconfont icon-cuowu" @click="byInfoHide"></i>
 			</div>
+			<div class="buy-info-goods">
+				<div class="buy-info-goods-img">
+					<img src="" alt="">
+				</div>
+				<div class="buy-info-goods-content">
+					<div class="buy-info-goods-content-price">￥555</div>
+					<div class="buy-info-goods-content-name">小米</div>
+				</div>
+			</div>
+			<div class="buy-option-info">
+				<div class="option-title">版本</div>
+				<div class="options-group">
+					<div class="option-item">
+						<p>6GB+128GB</p>
+						<p>2499元</p>
+					</div>
+					<div class="option-item">
+						<p>8GB+128GB</p>
+						<p>3499元</p>
+					</div>
+				</div>
+				<div class="option-title">颜色</div>
+				<div class="options-group">
+					<div class="options-item-color">
+						<p>白色</p>
+						<p>黑色</p>
+					</div>
+				</div>
+				<div class="option-count">
+					<div class="option-count-title">购买数量</div>
+				  	<div class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='10'>
+				  	  <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+				  	  <input class="mui-numbox-input" type="number" value="1" />
+				  	  <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+				  	</div>
+				</div>
+			</div>
+			<div class="buy-btn">加入购物车</div>
 		</div>
 	</div>
 </template>
@@ -370,11 +369,19 @@ export default {
 .show {
 	display: block;
 }
-.by-animation {
-	animation:move 1s forwards;
+.by-animation-show {
+	animation:moveShow 1s forwards;
 }
-@keyframes move{
+
+@keyframes moveShow {
 	from {bottom:-9rem;}
 	to{bottom:0rem;}
+}
+.by-animation-hide {
+	animation:moveHide 1s forwards;
+}
+@keyframes moveHide {
+	from {bottom:0rem;}
+	to{bottom:-9rem;}
 }
 </style>

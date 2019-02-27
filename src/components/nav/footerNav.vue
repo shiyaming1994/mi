@@ -35,7 +35,7 @@
 
 <style scoped>
 .footer {
-	padding-bottom: 1.5rem;
+	padding-bottom: 1rem;
 }
 ul {
     position: fixed;
@@ -49,7 +49,7 @@ ul {
 ul li {
     float: left;
     width: 25%;
-    height: 1.5rem;
+    height: 1rem;
     font-size: .2rem;
     text-align: center;
     display: flex;

@@ -7,6 +7,46 @@
 				<em>去登录</em>
 			</a>
 		</div>
+        <div class="item">
+            <div class="item-inp">
+                <input type="checkbox">
+            </div>
+            <div class="item-img">
+                <img src="//i1.mifile.cn/a1/pms_1539913759.18356169.jpg" alt="">
+            </div>
+            <div class="item-info">
+                <div class="item-info-name">小米达瓦大大我打大我打大我打大我打大我打大我打大我打</div>
+                <div class="item-info-price">￥2988</div>
+                <div class="item-info-count">
+                    <div class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='10'>
+                      <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+                      <input class="mui-numbox-input" type="number" value="1" />
+                      <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+                    </div>
+                    <i class="mui-icon mui-icon-trash"></i>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item-inp">
+                <input type="checkbox">
+            </div>
+            <div class="item-img">
+                <img src="//i1.mifile.cn/a1/pms_1539913759.18356169.jpg" alt="">
+            </div>
+            <div class="item-info">
+                <div class="item-info-name">小米达瓦大大我打大我打大我打大我打大我打大我打大我打</div>
+                <div class="item-info-price">￥2988</div>
+                <div class="item-info-count">
+                    <div class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='10'>
+                      <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+                      <input class="mui-numbox-input" type="number" value="1" />
+                      <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+                    </div>
+                    <i class="mui-icon mui-icon-trash"></i>
+                </div>
+            </div>
+        </div>
 		<div class="noitems">
 			<a href="javascript:;">
 				<span data-v-5c6b2c62="">购物车还是空的</span>
@@ -28,6 +68,16 @@
   				</div>
   			</div>
   		</div>
+        <div class="bottom-submit">
+            <div class="bottom-box">
+                <div class="price-box">
+                    <div class="bottom-count">共4件 金额：</div>
+                    <div><span class="bottom-money">5698</span>元</div>
+                </div>
+                <div class="btn gobuy">继续购物</div>
+                <div class="btn">去结算</div>
+            </div>
+        </div>
 		<footer-nav></footer-nav>
 	</div>
 </template>
@@ -174,5 +224,103 @@ export default {
     color: #ea625b;
     height: 1.5em;
     line-height: 1.5em;
+}
+.item {
+    display: flex;
+    align-items: center;
+    padding: .3rem 0;
+    border-bottom: 1px solid #eee;
+}
+.item-img {
+    display: block;
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    margin-right: .2rem;
+    border: 1px solid #eee;
+    border-radius: 2px; 
+}
+.item-img img {
+    display: block;
+    width: 100%;
+}
+.item-info {
+    flex: 1 1 auto;
+}
+.item-inp {
+    width: .5rem;
+    text-align: center;
+}
+.item-inp input {
+    width: .3rem;
+    height: .3rem;
+}
+.item-info-name {
+    width: 4rem;
+    font-size: .28rem;
+    line-height: .32rem;
+    color: #666;
+}
+.item-info-price {
+    font-size: .26rem;
+    color: #999;
+    margin: .1rem 0;
+}
+.item-info-count {
+    display: flex;
+    justify-content: space-between;
+} 
+.item-info-count i {
+    display: block;
+    height: .55rem;
+    line-height: .55rem;
+    width: .55rem;
+    text-align: center;
+    margin-right: .3rem;
+}
+.bottom-submit {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 998;
+    box-shadow: 0 3px 14px 2px rgba(0,0,0,.12); 
+}
+.bottom-box {
+    display: flex;
+    justify-content: center;
+}
+.price-box {
+    font-size: .26rem;
+    color: #999;
+    width: 100%;
+    text-align: center;
+    padding-top: .15rem;
+}
+.btn {
+    display: block;
+    outline: 0;
+    background: #ff6700;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: .28rem;
+}
+.gobuy {
+    background-color: #f4f4f4;
+    color: #333;
+}
+.bottom-count {
+    font-size: .26rem;
+    color: #999;
+}
+.bottom-money {
+    font-size: .45rem;
+        font-weight: bolder;
+    color: #ff5722;
+    margin-right: .2em;
 }
 </style>
