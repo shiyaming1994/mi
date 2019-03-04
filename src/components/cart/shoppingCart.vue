@@ -7,47 +7,24 @@
 				<em>去登录</em>
 			</a>
 		</div>
-        <div class="item">
+
+        <div class="item" v-for="(item,index) in cartList">
             <div class="item-inp">
-                <input type="checkbox">
+                <!-- <input type="checkbox"> -->
             </div>
             <div class="item-img">
-                <img src="//i1.mifile.cn/a1/pms_1539913759.18356169.jpg" alt="">
+                <img :src="item.img" alt="">
             </div>
             <div class="item-info">
-                <div class="item-info-name">小米达瓦大大我打大我打大我打大我打大我打大我打大我打</div>
-                <div class="item-info-price">￥2988</div>
+                <div class="item-info-name">{{ item.name }}</div>
+                <div class="item-info-price">￥{{ item.price }}</div>
                 <div class="item-info-count">
-                    <div class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='10'>
-                      <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
-                      <input class="mui-numbox-input" type="number" value="1" />
-                      <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
-                    </div>
-                    <i class="mui-icon mui-icon-trash"></i>
+                    <cart-num :initcount="$store.getters.getGoodsCount[item.id]" :goodsid="item.id"></cart-num>
+                    <i class="mui-icon mui-icon-trash" @click="remove(item.id,index)"></i>
                 </div>
             </div>
         </div>
-        <div class="item">
-            <div class="item-inp">
-                <input type="checkbox">
-            </div>
-            <div class="item-img">
-                <img src="//i1.mifile.cn/a1/pms_1539913759.18356169.jpg" alt="">
-            </div>
-            <div class="item-info">
-                <div class="item-info-name">小米达瓦大大我打大我打大我打大我打大我打大我打大我打</div>
-                <div class="item-info-price">￥2988</div>
-                <div class="item-info-count">
-                    <div class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='10'>
-                      <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
-                      <input class="mui-numbox-input" type="number" value="1" />
-                      <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
-                    </div>
-                    <i class="mui-icon mui-icon-trash"></i>
-                </div>
-            </div>
-        </div>
-		<div class="noitems">
+		<div class="noitems" v-if="$store.getters.getAllCount == 0">
 			<a href="javascript:;">
 				<span data-v-5c6b2c62="">购物车还是空的</span>
 				<em data-v-5c6b2c62="">去逛逛</em>
@@ -68,46 +45,96 @@
   				</div>
   			</div>
   		</div>
-        <div class="bottom-submit">
+        <div class="bottom-submit" v-if="$store.getters.getAllCount != 0">
             <div class="bottom-box">
                 <div class="price-box">
-                    <div class="bottom-count">共4件 金额：</div>
-                    <div><span class="bottom-money">5698</span>元</div>
+                    <div class="bottom-count">共{{ $store.getters.getAllCount }}件 金额：</div>
+                    <div><span class="bottom-money">{{ $store.getters.getGoodsPrice }}</span>元</div>
                 </div>
                 <div class="btn gobuy">继续购物</div>
-                <div class="btn">去结算</div>
+                <div class="btn" @click="settlement">去结算</div>
             </div>
         </div>
-		<footer-nav></footer-nav>
+        <div class="footer" v-else>
+            <footer-nav></footer-nav>
+        </div>
+		
 	</div>
 </template>
 <script>
+import cartNum from '../cart/cartNum'
 import headerNav from '../nav/headerNav'
 import footerNav from '../nav/footerNav'
+import mui from '../../../static/mui/dist/js/mui.min.js'
 export default {
 	data(){
 		return {
-			list:[]
+			list:[],
+            cartList:[]
 		}
 	},
 	created(){
-		this.getList()
+        this.getList()
+		this.getGoods()
 	},
+    mounted(){
+        mui('.mui-numbox').numbox()
+    },
 	methods:{
+        // 推荐商品
 		getList(){
             this.$http.get("../../../static/homeGoods.json")
                 .then(res=>{
                     this.list = res.data
-                    console.log(this.list);
                 }).catch(function(error){
                     console.log("error init."+error)
                 })
+        },
+        // 获取购物车
+        getGoods(){
+            this.cartList = this.$store.state.car
+        },
+        // 删除
+        remove(id,index){
+            let idarr = [id]
+            this.cartList.splice(index,1)
+            this.$store.commit('removeGoods',idarr)
+        },
+        settlement(){
+            let order = {}
+            let list = []
+            let allCount = 0
+            let allPricr = 0
+            let buy = false
+            this.cartList.forEach((item,i) => {
+                let obj = {}
+                obj.id =  item.id,
+                obj.number =  new Date().getTime(),
+                obj.payment = false,
+                obj.img = item.img,
+                obj.name = item.name,
+                obj.count = item.count,
+                obj.price = item.price,
+                obj.Memory = item.Memory,
+                obj.color = item.color,
+                allCount += item.count,
+                allPricr += item.price * item.count,
+                list.push(obj) 
+            })
+            order.time =  new Date().getTime()
+            order.list = list
+            order.allCount = allCount
+            order.allPricr = allPricr
+            order.buy = buy
+            this.$store.commit('addOrder',order)
+            this.$router.push('/cart/submit?orderid=' + order.time)
         }
 	},
 	computed:{},
 	components:{
 		headerNav,
-		footerNav
+		footerNav,
+        cartNum
 	}
 }
 </script>

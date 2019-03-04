@@ -1,0 +1,18 @@
+[
+	{
+		"id":"3001",
+		"name":"诸葛铁牛",
+		"phone":"131****6588",
+		"address_region":"北京 北京市 顺义区",
+		"address_info":"居馨花园1号楼，1单元，1201",
+		"checked":true
+	},
+	{
+		"id":"3002",
+		"name":"欧阳拴住",
+		"phone":"131****2855",
+		"address_region":"北京 北京市 顺义区",
+		"address_info":"居馨花园3号楼，1单元，1801",
+		"checked":false
+	}
+]

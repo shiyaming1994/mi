@@ -1,5 +1,5 @@
 <template>
-  	<div class="footer">
+  	<div>
 		<ul class="clearfix">
 			<li>
 				<router-link to='/index'>
@@ -13,10 +13,11 @@
 					<span>分类</span>
 				</router-link>
 			</li>
-			<li>
+			<li class="cart">
 				<router-link to='/shoppingCart'>
 					<i class="iconfont icon-gouwuche1"></i>
 					<span>购物车</span>
+					<span class="cartnum" v-if="$store.getters.getAllCount != 0">{{ $store.getters.getAllCount }}</span>
 				</router-link>
 			</li>
 			<li>
@@ -30,13 +31,10 @@
 </template>
 
 <script>
-	
+
 </script>
 
 <style scoped>
-.footer {
-	padding-bottom: 1rem;
-}
 ul {
     position: fixed;
     bottom: 0;
@@ -66,5 +64,27 @@ ul li i {
 }
 .router-link-active {
 	color: skyblue;
+}
+.cart {
+	position: relative;
+}
+.cartnum {
+	position: absolute;
+    min-width: .35rem;
+    line-height: .35rem;
+    height: .35rem;
+    box-sizing: border-box;
+    padding: 0 .05rem;
+    font-size: .24rem;
+    overflow: hidden;
+    text-align: center;
+    border-radius: .28rem;
+    background: #ed4d41;
+    color: #fff;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translate3d(.1rem,-20%,0);
+    transform: translate3d(.1rem,-20%,0);
+    font-style: normal;
 }
 </style>

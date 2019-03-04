@@ -4,12 +4,12 @@
 		<div class="category-info">
             <div class="category-info-left">
                 <ul>
-                    <li v-for="(item, index) in list_title" @click="getList(item.id)" :class="index == 0?'now':''">{{ item.name }}</li>
+                    <li v-for="(item, index) in list_title" :class="index == 0?'now':''">{{ item.name }}</li>
                 </ul>
             </div>
             <div class="category-info-right">
                 <div v-for="(item, index) in list">
-                    <div class="category-list clearfix" @click="goDetails(item.id)">
+                    <div class="category-list clearfix">
                         <div class="category-list-left left">
                             <div class="category-list-left-title">{{ item.title }}</div>
                             <div class="category-list-left-info">{{ item.info }}</div>
@@ -49,12 +49,6 @@ export default {
                 }).catch(function(error){
                     console.log("error init."+error)
                 })
-        },
-        goDetails(id){
-            this.$router.push("/details/" + id)
-        },
-        loadBottom(){
-            console.log(111);
         }
 	},
 	computed:{},

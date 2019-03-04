@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="index">
 		<div class="header">
   			<div class="user"></div>
   			<div class="search">
@@ -8,7 +8,9 @@
   				</div>
   			</div>
   		</div>
-		<swiper :rotationChart="rotationChart"></swiper>
+      <div class="swiper">
+        <swiper :rotationChart="rotationChart"></swiper>
+      </div>
 		<div class="index-nav-list">
 			<ul class="clearfix">
 				<li>
@@ -99,6 +101,9 @@ export default {
 }
 </script>
 <style scoped>
+.index {
+  padding-bottom: 1rem;
+}
 .header {
 	 display: -webkit-box;
     display: -ms-flexbox;
@@ -115,6 +120,9 @@ export default {
     color: #666;
     padding: 0;
 }  
+.swiper {
+  height: 3.75rem;
+}
 .search {
     font-size: .3rem;
     display: -webkit-box;

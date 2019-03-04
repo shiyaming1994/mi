@@ -2,7 +2,7 @@
 	<div>
 		<header class="header">
 			<div>
-				<div class="header-goback">
+				<div class="header-goback" @click="goBack">
 					<i class="iconfont icon-return1"></i>
 				</div>
 			</div>
@@ -18,12 +18,16 @@
 <script>
 export default {
 	data(){
-		return {}
+		return {
+			url:this.$route.path
+		}
 	},
 	created(){},
-	methods:{},
-	computed:{},
-	components:{}
+	methods:{
+		goBack(){
+            this.$router.go(-1)
+        }
+	}
 }
 </script>
 <style scoped>
