@@ -274,4 +274,8 @@ export default {
     color: #aea38d;
     background-color: #f9f5e6;
 }
+.shop-wrapper .shops-li:last-child {
+    min-height: -webkit-calc(100vh - .1rem);
+    min-height: calc(100vh - .1rem);
+}
 </style>
