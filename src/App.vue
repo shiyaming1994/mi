@@ -13,11 +13,12 @@
         </div>
       </div>
     </header> -->
-    <router-view></router-view>
+      <router-view></router-view>
   </div>
 </template>
 
 <script>
+
 export default {
   data(){
     return {
@@ -25,34 +26,17 @@ export default {
         show: false
     }
   },
-  created(){},
   methods:{
     goBack(){
         this.$router.go(-1)
     }
   },
+  methods:{
+
+  },
   watch:{
-      // '$route.path': function (newVal, oldVal){
-      //    console.log(newVal+'=========='+oldVal);
-      
-      // if (newVal == "/distinguish" || ) {
-      //   this.show = false
-      // }
-      // if (to.path == "/user") {
-      //   this.show = false
-      // }
-      // if (to.path == "/distinguish") {
-      //   this.show = true
-      //   this.msg = "分类"
-      // }
-      // if (to.path == "/distinguish") {
-      //   this.show = true
-      //   this.msg = "分类"
-      // }
-      // if (to.path == "/distinguish") {
-      //   this.show = true
-      //   this.msg = "分类"
-      // }
+    //   '$route.path': function (newVal, oldVal){
+    //      console.log(newVal+'=========='+oldVal);
     // }
   }
 }

@@ -26,7 +26,7 @@
                             <ul class="clearfix">
                                 <li v-for="(item, index) in items.list">
                                     <div class="item-list-img">
-                                        <img :src="item.img" alt="">
+                                        <img v-lazy="item.img" alt="">
                                     </div>
                                     <div class="item-list-name">{{ item.name }}</div>
                                 </li>
@@ -94,11 +94,10 @@ export default {
     },
     _initBScroll() {
       //左边滚动
-      this.leftBscroll = new BScroll('.menu-wrapper',{ mouseWheel: true, click: true, tap: true });
+      this.leftBscroll = new BScroll('.menu-wrapper',{ click: true, tap: true });
       //右边滚动
       this.rightBscroll = new BScroll('.shop-wrapper',{
         probeType:3,
-        mouseWheel: true, 
         click: true, 
         tap: true
       });
@@ -156,7 +155,7 @@ export default {
     overflow: hidden;
 }
 .menu-wrapper {
-    background-color: #e0e0e0;
+    background-color: #fafafa;
     width: 1.8rem;
     flex: 0 0 1.8rem;
 }
@@ -276,6 +275,11 @@ export default {
 }
 .shop-wrapper .shops-li:last-child {
     min-height: -webkit-calc(100vh - .1rem);
-    min-height: calc(100vh - .1rem);
+    min-height: calc(100vh - 2rem);
+}
+img[lazy=loading] {
+  width: 1rem;
+  height: 1rem;
+  margin: auto;
 }
 </style>
