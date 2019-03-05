@@ -568,7 +568,6 @@ export default {
 .by-animation-show {
 	animation:moveShow .5s forwards;
 }
-
 @keyframes moveShow {
 	from {bottom:-9rem;}
 	to{bottom:0rem;}
@@ -579,5 +578,12 @@ export default {
 @keyframes moveHide {
 	from {bottom:0rem;}
 	to{bottom:-9rem;}
+}
+.btn-show-buy {
+    animation:btnShow .35s forwards;
+}
+@keyframes btnShow {
+    from {bottom: -1rem;}
+    to{bottom: .3rem;}
 }
 </style>

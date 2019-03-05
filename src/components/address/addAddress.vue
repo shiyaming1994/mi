@@ -63,7 +63,7 @@ export default {
 				checked :this.checked
 			}
 			this.$store.commit('addAddress',addressInfo)
-			this.$router.push('/address/addressList')
+			this.$router.go(-1)
 		}
 	},
 	computed:{},

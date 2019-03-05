@@ -61,7 +61,7 @@ export default {
         },
         edit(){
 			this.$store.commit('editAddress',this.editAddress)
-			this.$router.push('/address/addressList/user')
+            this.$router.go(-1)
 		}
 	},
 	computed:{},
