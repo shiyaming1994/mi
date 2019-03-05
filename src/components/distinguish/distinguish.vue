@@ -1,155 +1,277 @@
 <template>
-	<div>
-        <header-nav>分类</header-nav>
-		<div class="category-info">
-            <div class="category-info-left">
-                <ul>
-                    <li v-for="(item, index) in list_title" :class="index == 0?'now':''">{{ item.name }}</li>
-                </ul>
-            </div>
-            <div class="category-info-right">
-                <div v-for="(item, index) in list">
-                    <div class="category-list clearfix">
-                        <div class="category-list-left left">
-                            <div class="category-list-left-title">{{ item.title }}</div>
-                            <div class="category-list-left-info">{{ item.info }}</div>
-                            <div class="category-list-left-money clearfix">
-                                <div class="category-list-left-money-new left">￥{{ item.price }}</div>
-                            </div>
+<div class="search">
+    <!-- 搜索导航 -->
+    <header-nav>分类</header-nav>
+    <div class="shop">
+    <!-- 左边 -->
+        <div class="menu-wrapper">
+            <ul>
+                <li class="menu-item" v-for="(goods,index) in searchgoods" :key="index" :class="{current: index === currentIndex}" @click="clickList(index)" ref="menuList">
+                    <span>{{goods.left}}</span>
+                </li>
+            </ul>
+        </div>
+    <!-- 右边 -->
+        <div class="shop-wrapper">
+            <ul ref="itemList">
+                <li class="shops-li" v-for="(right, index1) in searchgoods" :key="index1">
+                    <div v-for="(items, index) in right.info">
+                        <div class="itemList-img">
+                            <img :src="items.title_img" alt="">
                         </div>
-                        <div class="category-list-right right">
-                            <img v-lazy="item.img" alt="">
+                        <div class="itemList-title">
+                            <span>{{ items.title }}</span>
+                        </div>
+                        <div class="item-list">
+                            <ul class="clearfix">
+                                <li v-for="(item, index) in items.list">
+                                    <div class="item-list-img">
+                                        <img :src="item.img" alt="">
+                                    </div>
+                                    <div class="item-list-name">{{ item.name }}</div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div class="more">查看更多</div>
+                </li>
+            </ul>
         </div>
-		<footer-nav></footer-nav>
-	</div>
+    </div>
+    <footer-nav></footer-nav>
+</div>
 </template>
+
 <script>
 import headerNav from '../nav/headerNav'
 import footerNav from '../nav/footerNav'
+import BScroll from 'better-scroll'
 export default {
-	data(){
-		return {
-			list:[],
-            list_title:[]
-		}
-	},
-	created(){
-		this.getList(0)
-	},
-	methods:{
-		getList(id){
-            this.$http.get("../../../static/data.json?id=" + id)
-                .then(res=>{
-                    this.list = res.data.list
-                    this.list_title = res.data.list_title
-                }).catch(function(error){
-                    console.log("error init."+error)
-                })
-        }
-	},
-	computed:{},
-	components:{
-		footerNav,
-        headerNav
-	}
+  name: 'chat',
+  data () {
+    return {
+        scrollY: 0, //右侧列表滑动的y轴坐标
+        rightLiTops:[], //所有分类头部位置
+        searchgoods:[]
+    }
+  },
+  computed: {
+    //动态绑定class类名
+    currentIndex(index) {
+      const {scrollY,rightLiTops} = this;
+      return rightLiTops.findIndex((tops,index )=>{
+        this._initLeftScroll(index);
+        return scrollY >= tops && scrollY < rightLiTops[index + 1]
+      })
+    }
+  },
+  mounted() {
+    this.getList()
+  },
+  components: {
+    footerNav,
+    headerNav
+  },
+  watch:{
+    searchgoods(){
+      //监听数据
+      this.$nextTick(() =>{
+        //左右两边滚动
+        this. _initBScroll();
+        //右边列表高度
+        this._initRightHeight();
+      })
+    }
+  },
+  methods:{
+    getList(){
+        this.$http.get("../../../static/data.json")
+            .then(res=>{
+                this.searchgoods = res.data
+            }).catch(function(error){
+                console.log("error init."+error)
+            })
+    },
+    _initBScroll() {
+      //左边滚动
+      this.leftBscroll = new BScroll('.menu-wrapper',{ mouseWheel: true, click: true, tap: true });
+      //右边滚动
+      this.rightBscroll = new BScroll('.shop-wrapper',{
+        probeType:3,
+        mouseWheel: true, 
+        click: true, 
+        tap: true
+      });
+      //监听右边滚动事件
+      this.rightBscroll.on('scroll',(pos) => {
+        this.scrollY = Math.abs(pos.y);
+        // console.log(this.scrollY)
+      })
+    },
+    //求出右边列表的高度
+    _initRightHeight(){
+        let itemArray=[]; //定义一个伪数组
+        let top = 0;
+        itemArray.push(top)
+        //获取右边所有li的礼
+        let allList = this.$refs.itemList.getElementsByClassName('shops-li');
+        //allList伪数组转化成真数组
+        Array.prototype.slice.call(allList).forEach(li => {
+          top += li.clientHeight; //获取所有li的每一个高度
+          itemArray.push(top)
+        });
+        this.rightLiTops = itemArray;
+        // console.log(this.rightLiTops)
+    },
+    //点击左边实现滚动
+    clickList(index){
+        console.log(1)
+        this.scrollY = this.rightLiTops[index];
+        console.log(this.scrollY)
+        this.rightBscroll.scrollTo(0,-this.scrollY,200,)
+    },
+    //左右联调 
+    _initLeftScroll(index){
+      let menu = this.$refs.menuList;
+      let el = menu[index];
+      this.leftBscroll.scrollToElement(el,300,0,-300)
+    }
+  }
 }
 </script>
+
 <style scoped>
-.category-info-left {
-    width: 2rem;
-    position: fixed;
-    top: 1rem;
-    bottom: 1.5rem;
-    left: 0;
-    border-right: 1px solid #efefef;
-    overflow: hidden;
-}
-.category-info-right {
-    position: fixed;
-    top: 1rem;
-    left: 2rem;
-    right: 0;
-    bottom: 1.5rem;
-    overflow: hidden;
-    overflow-y: auto;
-    background-color: #f6f6f6;
-    border-left: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-}
-.category-info-left ul {
-    z-index: 90;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: -.1rem;
-    overflow-y: auto;
-}
-.category-info-left li {
-    height: 1rem;
-    font-size: .3rem;
-    line-height: 1rem;
-    text-align: center;
-    border-top: 1px solid #ccc;
-}
-.category-list {
-    position: relative;
-    padding: .2rem;
-    border-bottom: 1px solid #ccc;
-    background-color: #fff;
-}
-.category-list-left {
-    width: 3.3rem;
-    padding-right: .2rem;
-}
-.category-list-left-title {
-    font-size: .3rem;
-    overflow: hidden;
-    color: #000;
-    line-height: .35rem;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
-.category-list-left-info {
-    font-size: .2rem;
-    color: #999;
-    margin-top: .1rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-}
-.category-list-left-money {
-    font-size: .2rem;
-    position: absolute;
-    bottom: .2rem;
-    width: 3.3rem;
-    color: #999;
-    line-height: .3rem;
-    padding-right: .2rem;
-}
-.category-list-right {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-.category-list-right img {
-    display: block;
+.search {
     width: 100%;
     height: 100%;
+    background-color: #f5f5f5;
+    overflow: hidden;
 }
-.now {
-    color: skyblue;
+.shop {
+    display: flex;
+    position: absolute;
+    top: 1rem;
+    bottom: 1rem;
+    width: 100%;
+    overflow: hidden;
 }
-img[lazy=loading] {
-  width: 40px;
-  height: 300px;
-  margin: auto;
+.menu-wrapper {
+    background-color: #e0e0e0;
+    width: 1.8rem;
+    flex: 0 0 1.8rem;
+}
+.menu-item {
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    background: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: lighter;
+    color: #666;
+    position: relative;
+}
+.current {
+    color: #e02e24;
+    background: #ffffff;
+}
+.current::before {
+    content: '';
+    background-color: #e02e24;
+    width: 4px;
+    height: 1rem;
+    position: absolute;
+    right: 0;
+}
+.shop-wrapper {
+    flex: 1;
+    background: #fff;
+}
+.shops-title {
+    display: flex;
+    flex-direction: row;
+    padding: 0 10px;
+    height: 200px;
+    line-height: 200px;
+    border: 1px solid #ccc;
+    align-items: center;
+    justify-content: space-between;
+    color: #9999;
+}
+.shops-items {
+    display: flex; 
+    flex-wrap: wrap;
+}   
+.shop-wrapper {
+    padding: 0 .3rem;
+}  
+.shops-li {
+    /*min-height: 15rem;*/
+}
+.itemList-img img {
+    width: 100%;
+}  
+.itemList-title {
+    font-size: .35rem;
+    text-align: center;
+    height: .5rem;
+    line-height: .5rem;
+    margin: .2rem auto;
+}    
+.itemList-title span {
+    position: relative;
+}
+.itemList-title span::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 6.4px;
+    width: .4rem;
+    border-top: 1px solid #e0e0e0;
+    transform: translate3d(-150%,-50%,0);
+    -webkit-transform: translate3d(-150%,-50%,0);
+} 
+.itemList-title span::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 6.4px;
+    width: .4rem;
+    border-top: 1px solid #e0e0e0;
+    left: auto;
+    right: 0;
+    transform: translate3d(150%,-50%,0);
+    -webkit-transform: translate3d(150%,-50%,0);
+}
+.item-list li {
+    width: 33.3%;
+    float: left;
+    margin-top: .2rem;
+}
+.item-list-img {
+    width: 1rem;
+    height: 1rem;
+    margin: auto;
+}
+.item-list-name {
+    margin-top: .15rem;
+    text-align: center;
+    white-space: nowrap;
+    font-size: .23rem;
+    color: rgba(0,0,0,.54);
+}
+.item-list-img img {
+    width: 100%;
+}
+.more {
+    background-color: skyblue;
+    margin: .15rem auto;
+    text-align: center;
+    height: .8rem;
+    line-height: .8rem;
+    color: #aea38d;
+    background-color: #f9f5e6;
 }
 </style>
