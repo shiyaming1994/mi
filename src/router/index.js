@@ -14,7 +14,7 @@ import editAddress from '@/components/address/editAddress'
 Vue.use(Router)
 
 export default new Router({
-	mode: 'history',
+	mode: 'hash',
   scrollBehavior (to, from, savePosition) {
     if (savePosition) {
       return savePosition
