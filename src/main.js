@@ -6,8 +6,8 @@ import router from './router'
 import axios from 'axios'
 import store from './store'
 import '../static/currency.css'
+import '../static/font/iconfont.css'
 import '../static/js/rem.js'
-
 import '../static/mui/dist/css/mui.css'
 
 Vue.prototype.$http = axios
