@@ -11,7 +11,8 @@ export default new Vuex.Store({
 	state: {
 		car:car,
 		address:address,
-		order:order
+		order:order,
+		footerShow:false
 	},
 	mutations: {
 		// shoppingCartAdd(state){
@@ -20,6 +21,10 @@ export default new Vuex.Store({
 		// shoppingCartRemove(state){
 		// 	state.count--
 		// },
+		// 底部显示
+		footerShow(state,status){
+			state.footerShow = status
+		},
 		// 加入购物车
 		addGoCart(state,buyGoodsInfo){
 			let flag = true
@@ -143,6 +148,9 @@ export default new Vuex.Store({
 				price += item.price * item.count
 			})
 			return price
+		},
+		footer(state){
+			return state.footerShow
 		}
 	}
 })

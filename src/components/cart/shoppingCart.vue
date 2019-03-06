@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="footer" v-else>
-            <footer-nav></footer-nav>
+            <!-- <footer-nav></footer-nav> -->
         </div>
 		
 	</div>
@@ -64,7 +64,7 @@
 <script>
 import cartNum from '../cart/cartNum'
 import headerNav from '../nav/headerNav'
-import footerNav from '../nav/footerNav'
+// import footerNav from '../nav/footerNav'
 import mui from '../../../static/mui/dist/js/mui.min.js'
 export default {
 	data(){
@@ -76,6 +76,7 @@ export default {
 	created(){
         this.getList()
 		this.getGoods()
+        this.$store.commit('footerShow',true)
 	},
     mounted(){
         mui('.mui-numbox').numbox()
@@ -133,7 +134,7 @@ export default {
 	computed:{},
 	components:{
 		headerNav,
-		footerNav,
+		// footerNav,
         cartNum
 	}
 }

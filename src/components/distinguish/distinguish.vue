@@ -38,13 +38,13 @@
             </ul>
         </div>
     </div>
-    <footer-nav></footer-nav>
+    <!-- <footer-nav></footer-nav> -->
 </div>
 </template>
 
 <script>
 import headerNav from '../nav/headerNav'
-import footerNav from '../nav/footerNav'
+// import footerNav from '../nav/footerNav'
 import BScroll from 'better-scroll'
 export default {
   name: 'chat',
@@ -54,6 +54,9 @@ export default {
         rightLiTops:[], //所有分类头部位置
         searchgoods:[]
     }
+  },
+  created(){
+    this.$store.commit('footerShow',true)
   },
   computed: {
     //动态绑定class类名
@@ -69,7 +72,7 @@ export default {
     this.getList()
   },
   components: {
-    footerNav,
+    // footerNav,
     headerNav
   },
   watch:{
@@ -124,9 +127,7 @@ export default {
     },
     //点击左边实现滚动
     clickList(index){
-        console.log(1)
         this.scrollY = this.rightLiTops[index];
-        console.log(this.scrollY)
         this.rightBscroll.scrollTo(0,-this.scrollY,200,)
     },
     //左右联调 
@@ -206,7 +207,10 @@ export default {
     padding: 0 .3rem;
 }  
 .shops-li {
-    /*min-height: 15rem;*/
+    padding-bottom: .15rem;
+}
+.itemList-img {
+    height: 2.05rem;
 }
 .itemList-img img {
     width: 100%;
@@ -266,7 +270,7 @@ export default {
 }
 .more {
     background-color: skyblue;
-    margin: .15rem auto;
+    margin: .15rem auto 0;
     text-align: center;
     height: .8rem;
     line-height: .8rem;
@@ -274,7 +278,7 @@ export default {
     background-color: #f9f5e6;
 }
 .shop-wrapper .shops-li:last-child {
-    min-height: -webkit-calc(100vh - .1rem);
+    min-height: -webkit-calc(100vh - 2rem);
     min-height: calc(100vh - 2rem);
 }
 img[lazy=loading] {

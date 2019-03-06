@@ -56,20 +56,22 @@
 				<div class="items-info">我的名片</div>
 			</li>
 		</ul>
-		<footer-nav></footer-nav>
+		<!-- <footer-nav></footer-nav> -->
 	</div>
 </template>
 <script>
-import footerNav from '../nav/footerNav'
+// import footerNav from '../nav/footerNav'
 export default {
 	data(){
 		return {}
 	},
-	created(){},
+	created(){
+		this.$store.commit('footerShow',false)
+	},
 	methods:{},
 	computed:{},
 	components:{
-		footerNav
+		// footerNav
 	}
 }
 </script>

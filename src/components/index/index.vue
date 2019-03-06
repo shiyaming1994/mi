@@ -58,11 +58,11 @@
   				</div>
   			</router-link>
   		</div>
-		<footer-nav></footer-nav>
+		<!-- <footer-nav></footer-nav> -->
 	</div>
 </template>
 <script>
-import footerNav from '../nav/footerNav'
+// import footerNav from '../nav/footerNav'
 import swiper from '../swiper/swiper'
 export default {
 	data(){
@@ -74,13 +74,13 @@ export default {
 	created(){
     this.getList()
 		this.getWheel()
+    this.$store.commit('footerShow',true)
 	}, 
 	methods:{
 		getList(){
             this.$http.get("https://shiyaming1994.github.io/mi/static/homeGoods.json")
                 .then(res=>{
                     this.list = res.data
-                    console.log(this.list)
                 }).catch(function(error){
                     console.log("error init."+error)
                 })
@@ -96,7 +96,7 @@ export default {
 	},
 	computed:{},
 	components:{
-		footerNav,
+		// footerNav,
 		swiper
 	}
 }

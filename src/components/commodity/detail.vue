@@ -115,6 +115,7 @@ export default {
 	},
 	created(){
 		this.getList()
+		this.$store.commit('footerShow',false)
 	},
 	methods:{
 		getList(){

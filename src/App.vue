@@ -14,11 +14,14 @@
       </div>
     </header> -->
       <router-view></router-view>
+      <transition name="fade">
+        <footer-nav v-if="$store.getters.footer"></footer-nav>
+      </transition>
   </div>
 </template>
 
 <script>
-
+import footerNav from './components/nav/footerNav'
 export default {
   data(){
     return {
@@ -38,6 +41,9 @@ export default {
     //   '$route.path': function (newVal, oldVal){
     //      console.log(newVal+'=========='+oldVal);
     // }
+  },
+  components:{
+    footerNav
   }
 }
 </script>
