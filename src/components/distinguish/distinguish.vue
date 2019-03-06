@@ -85,7 +85,7 @@ export default {
   },
   methods:{
     getList(){
-        this.$http.get("../../../static/data.json")
+        this.$http.get("https://shiyaming1994.github.io/mi/static/data.json")
             .then(res=>{
                 this.searchgoods = res.data
             }).catch(function(error){

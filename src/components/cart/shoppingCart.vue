@@ -83,7 +83,7 @@ export default {
 	methods:{
         // 推荐商品
 		getList(){
-            this.$http.get("../../../static/homeGoods.json")
+            this.$http.get("https://shiyaming1994.github.io/mi/static/homeGoods.json")
                 .then(res=>{
                     this.list = res.data
                 }).catch(function(error){

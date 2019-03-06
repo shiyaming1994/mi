@@ -118,7 +118,7 @@ export default {
 	},
 	methods:{
 		getList(){
-            this.$http.get("../../../static/homeGoods.json")
+            this.$http.get("https://shiyaming1994.github.io/mi/static/homeGoods.json")
                 .then(res=>{
                 	let id = this.$route.params.id 
                 	res.data.some(item => {

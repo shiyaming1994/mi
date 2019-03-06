@@ -77,7 +77,6 @@ export default {
 	}, 
 	methods:{
 		getList(){
-            // this.$http.get("../../../static/homeGoods.json")
             this.$http.get("https://shiyaming1994.github.io/mi/static/homeGoods.json")
                 .then(res=>{
                     this.list = res.data
@@ -87,7 +86,6 @@ export default {
                 })
         },
     getWheel(){
-        // this.$http.get("../../../static/rotationChart.json")
         this.$http.get("https://shiyaming1994.github.io/mi/static/rotationChart.json")
             .then(res=>{
                 this.rotationChart = res.data
