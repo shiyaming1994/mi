@@ -77,7 +77,8 @@ export default {
 	},
 	methods:{
 		getList(){
-            this.$http.get("../../../static/homeGoods.json")
+            // this.$http.get("../../../static/homeGoods.json")
+            this.$http.get("https://shiyaming1994.github.io/static/homeGoods.json")
                 .then(res=>{
                     this.list = res.data
                 }).catch(function(error){
@@ -85,7 +86,8 @@ export default {
                 })
         },
     getWheel(){
-        this.$http.get("../../../static/rotationChart.json")
+        // this.$http.get("../../../static/rotationChart.json")
+        this.$http.get("https://shiyaming1994.github.io/static/rotationChart.json")
             .then(res=>{
                 this.rotationChart = res.data
             }).catch(function(error){
