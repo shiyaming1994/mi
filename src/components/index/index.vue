@@ -74,20 +74,21 @@ export default {
 	created(){
     this.getList()
 		this.getWheel()
-	},
+	}, 
 	methods:{
 		getList(){
             // this.$http.get("../../../static/homeGoods.json")
-            this.$http.get("https://shiyaming1994.github.io/static/homeGoods.json")
+            this.$http.get("https://shiyaming1994.github.io/mi/static/homeGoods.json")
                 .then(res=>{
                     this.list = res.data
+                    console.log(this.list)
                 }).catch(function(error){
                     console.log("error init."+error)
                 })
         },
     getWheel(){
         // this.$http.get("../../../static/rotationChart.json")
-        this.$http.get("https://shiyaming1994.github.io/static/rotationChart.json")
+        this.$http.get("https://shiyaming1994.github.io/mi/static/rotationChart.json")
             .then(res=>{
                 this.rotationChart = res.data
             }).catch(function(error){
