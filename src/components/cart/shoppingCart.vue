@@ -1,6 +1,5 @@
 <template>
 	<div class="cart">
-		<header-nav>购物车</header-nav>
 		<div class="nologin">
 			<a href="javascript:;">
 				<span>登录后享受更多优惠</span>
@@ -45,38 +44,34 @@
   				</div>
   			</div>
   		</div>
-        <div class="bottom-submit" v-if="$store.getters.getAllCount != 0">
+        <div class="bottom-submit" v-if="AllCount != 0">
             <div class="bottom-box">
                 <div class="price-box">
                     <div class="bottom-count">共{{ $store.getters.getAllCount }}件 金额：</div>
                     <div><span class="bottom-money">{{ $store.getters.getGoodsPrice }}</span>元</div>
                 </div>
-                <div class="btn gobuy">继续购物</div>
+                <router-link to="/index" tag="div" class="btn gobuy">继续购物</router-link>
                 <div class="btn" @click="settlement">去结算</div>
             </div>
-        </div>
-        <div class="footer" v-else>
-            <!-- <footer-nav></footer-nav> -->
-        </div>
-		
+        </div>		
 	</div>
 </template>
 <script>
 import cartNum from '../cart/cartNum'
-import headerNav from '../nav/headerNav'
-// import footerNav from '../nav/footerNav'
 import mui from '../../../static/mui/dist/js/mui.min.js'
 export default {
 	data(){
 		return {
 			list:[],
-            cartList:[]
+            cartList:[],
+            AllCount:0
 		}
 	},
 	created(){
         this.getList()
 		this.getGoods()
-        this.$store.commit('footerShow',true)
+        this.getAllCount()
+        this.$store.commit('headerShow',{header:true,slot:'购物车'})
 	},
     mounted(){
         mui('.mui-numbox').numbox()
@@ -95,6 +90,15 @@ export default {
         getGoods(){
             this.cartList = this.$store.state.car
         },
+        // 购物车数量
+        getAllCount(){
+            this.AllCount = this.$store.getters.getAllCount
+            if(this.AllCount != 0){
+                this.$store.commit('footerShow',false)
+            }else{
+                this.$store.commit('footerShow',true)
+            }
+        },
         // 删除
         remove(id,index){
             let idarr = [id]
@@ -107,6 +111,8 @@ export default {
             let allCount = 0
             let allPricr = 0
             let buy = false
+            let buyId = []
+            // 提交到订单
             this.cartList.forEach((item,i) => {
                 let obj = {}
                 obj.id =  item.id,
@@ -121,6 +127,8 @@ export default {
                 allCount += item.count,
                 allPricr += item.price * item.count,
                 list.push(obj) 
+                // 购物车ID
+                buyId = buyId.concat(item.id)
             })
             order.time =  new Date().getTime()
             order.list = list
@@ -128,13 +136,16 @@ export default {
             order.allPricr = allPricr
             order.buy = buy
             this.$store.commit('addOrder',order)
+            // 清空购物车
+            this.cartList.buy = true
+            this.$store.commit('buy',this.cartList)
+            this.$store.commit('removeGoods',buyId)
+
             this.$router.push('/cart/submit?orderid=' + order.time)
         }
 	},
 	computed:{},
 	components:{
-		headerNav,
-		// footerNav,
         cartNum
 	}
 }

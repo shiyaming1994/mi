@@ -1,6 +1,5 @@
 <template>
 	<div class="submit">
-		<header-nav>用户结算</header-nav>
 		<router-link class="address" :to="'/address/addressList/cart?orderid='+ orderid" tag="div">
 			<div class="address-name">{{ address.name }}&nbsp;&nbsp;&nbsp;&nbsp;{{ address.phone }}</div>
 			<div class="address-info">{{ address.address_region }}&nbsp;&nbsp;{{ address.address_info }}</div>
@@ -61,7 +60,6 @@
 <script>
 import { MessageBox } from 'mint-ui';
 import { Toast } from 'mint-ui';
-import headerNav from '../nav/headerNav'
 export default {
 	data(){
 		return {
@@ -74,6 +72,8 @@ export default {
 	created(){
 		this.getGoods()
 		this.getAddress()
+        this.$store.commit('footerShow',false)
+        this.$store.commit('headerShow',{header:true,slot:'用户结算'})
 	},
 	methods:{
 		submit(){
@@ -83,13 +83,8 @@ export default {
 				  	iconClass: 'mui-icon mui-icon-checkmarkempty',
 				  	duration: 1000
 				})
-				let buyId = []
-				this.cartList.list.forEach(item => {
-            		buyId = buyId.concat(item.id)
-            	})
 				this.cartList.buy = true
 				this.$store.commit('buy',this.cartList)
-				this.$store.commit('removeGoods',buyId)
 				this.$router.push('/user')
 			},action => {
 
@@ -122,7 +117,7 @@ export default {
 	},
 	computed:{},
 	components:{
-		headerNav
+
 	}
 }
 </script>

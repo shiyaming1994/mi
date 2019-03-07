@@ -35,10 +35,10 @@
 			</router-link>
 		</ul>
 		<ul class="items">
-			<li>
+			<router-link to="/user/xscroll" tag="li">
 				<i class="iconfont icon-wodeyouhuiquan"></i>
 				<div class="items-info">我的优惠</div>
-			</li>
+			</router-link>
 			<li>
 				<i class="iconfont icon-wodefankui"></i>
 				<div class="items-info">我的意见</div>
@@ -56,22 +56,21 @@
 				<div class="items-info">我的名片</div>
 			</li>
 		</ul>
-		<!-- <footer-nav></footer-nav> -->
 	</div>
 </template>
 <script>
-// import footerNav from '../nav/footerNav'
 export default {
 	data(){
 		return {}
 	},
 	created(){
-		this.$store.commit('footerShow',false)
+		this.$store.commit('footerShow',true)
+        this.$store.commit('headerShow',{header:false})
 	},
 	methods:{},
 	computed:{},
 	components:{
-		// footerNav
+
 	}
 }
 </script>

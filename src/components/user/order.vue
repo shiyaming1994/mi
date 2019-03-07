@@ -1,6 +1,5 @@
 <template>
 	<div class="order">
-		<header-nav>我的订单</header-nav>
 		<div class="order-list-title">
 			<ul class="order-list">
 				<li>全部</li>
@@ -13,7 +12,7 @@
 				<div class="order-info-all">
 					<div class="order-info-all-top">
 						<div class="order-info-all-top-left">
-							<p class="order-data">订单日期：2019-01-01</p>
+							<p class="order-data">订单日期：{{dateFormat(item.time)}}</p>
 							<p class="order-num">订单编号：{{ item.time }}</p>
 						</div>
 						<div class="top-right" v-if="item.buy != true">待付款</div>
@@ -40,7 +39,6 @@
 	</div>
 </template>
 <script>
-import headerNav from '../nav/headerNav'
 export default {
 	data(){
 		return {
@@ -49,16 +47,29 @@ export default {
 	},
 	created(){
 		this.getOrder()
+        this.$store.commit('footerShow',false)
+        this.$store.commit('headerShow',{header:true,slot:'我的订单'})
 	},
 	methods:{
 		// 获取订单列表
         getOrder(){
             this.orderList = this.$store.state.order
+        },
+        dateFormat:function(time) {
+            var date=new Date(time);
+            var year=date.getFullYear();
+            var month= date.getMonth()+1<10 ? "0"+(date.getMonth()+1) : date.getMonth()+1;
+            var day=date.getDate()<10 ? "0"+date.getDate() : date.getDate();
+            var hours=date.getHours()<10 ? "0"+date.getHours() : date.getHours();
+            var minutes=date.getMinutes()<10 ? "0"+date.getMinutes() : date.getMinutes();
+            var seconds=date.getSeconds()<10 ? "0"+date.getSeconds() : date.getSeconds();
+            // 拼接
+            return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
         }
 	},
 	computed:{},
 	components:{
-		headerNav
+
 	}
 }
 </script>

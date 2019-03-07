@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<header class="header">
+	<div class="header">
+		<header>
 			<div>
 				<div class="header-goback" @click="goBack">
 					<i class="iconfont icon-return1"></i>
@@ -36,7 +36,9 @@ export default {
     z-index: 9999;
     top: 0;
     left: 0;
-    right: 0;
+    right: 0; 
+}
+header {
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -55,7 +57,7 @@ export default {
     transition: transform .2s ease-out;
     transition: transform .2s ease-out,-webkit-transform .2s ease-out;
 }
-.header>div {
+header>div {
 	display: -webkit-box;
     display: -webkit-flex;
     display: flex;

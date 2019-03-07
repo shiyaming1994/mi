@@ -1,5 +1,5 @@
 <template>
-  	<div>
+  	<div class="footer">
 		<ul class="clearfix">
 			<li>
 				<router-link to='/index'>
@@ -35,7 +35,7 @@
 </script>
 
 <style scoped>
-ul {
+.footer {
     position: fixed;
     bottom: 0;
     left: 0;

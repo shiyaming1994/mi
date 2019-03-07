@@ -47,34 +47,38 @@
   		</div>
   		<div class="line"></div>
   		<div class="goods clearfix">
-  			<router-link class="goods-list" v-for="(item,index) in list" :to="'/commodity/detail/'+item.id" :key="index">
-  				<div class="goods-list-img">
-  					<img :src="item.img" alt="">
-  				</div>
-  				<div class="goods-list-info">
-  					<div class="goods-list-name">{{ item.name }}</div>
-  					<div class="goods-list-content">{{ item.content }}</div>
-  					<div class="goods-list-price">￥{{ item.price }}</div>
-  				</div>
-  			</router-link>
+
+        <mt-loadmore ref="loadmore">
+            <ul>
+                <router-link tag="li" class="goods-list" v-for="(item,index) in list" :to="'/commodity/detail/'+item.id" :key="index">
+                    <div class="goods-list-img">
+                        <img :src="item.img" alt="">
+                    </div>
+                    <div class="goods-list-info">
+                        <div class="goods-list-name">{{ item.name }}</div>
+                        <div class="goods-list-content">{{ item.content }}</div>
+                        <div class="goods-list-price">￥{{ item.price }}</div>
+                    </div>
+                </router-link>
+            </ul>
+        </mt-loadmore>	
   		</div>
-		<!-- <footer-nav></footer-nav> -->
 	</div>
 </template>
 <script>
-// import footerNav from '../nav/footerNav'
 import swiper from '../swiper/swiper'
 export default {
 	data(){
 		return {
 			list:[],
-      rotationChart:[]
+            rotationChart:[]
 		}
 	},
 	created(){
-    this.getList()
+        this.getList()
 		this.getWheel()
-    this.$store.commit('footerShow',true)
+        this.$store.commit('footerShow',true)
+        this.$store.commit('headerShow',{header:false})
 	}, 
 	methods:{
 		getList(){
@@ -85,18 +89,21 @@ export default {
                     console.log("error init."+error)
                 })
         },
-    getWheel(){
-        this.$http.get("https://shiyaming1994.github.io/mi/static/rotationChart.json")
-            .then(res=>{
-                this.rotationChart = res.data
-            }).catch(function(error){
-                console.log("error init."+error)
-            })
-    }
+        getWheel(){
+            this.$http.get("https://shiyaming1994.github.io/mi/static/rotationChart.json")
+                .then(res=>{
+                    this.rotationChart = res.data
+                }).catch(function(error){
+                    console.log("error init."+error)
+                })
+        },
+        // loadBottom(){
+        //     this.allLoaded = true;
+        //     this.$refs.loadmore.onBottomLoaded();
+        // }
 	},
 	computed:{},
 	components:{
-		// footerNav,
 		swiper
 	}
 }

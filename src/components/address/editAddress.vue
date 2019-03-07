@@ -1,6 +1,5 @@
 <template>
 	<div class="address">
-		<header-nav>编辑收货地址</header-nav>
 		<div class="address-info">
 			<ul>
 				<li>
@@ -39,7 +38,6 @@
 	</div>
 </template>
 <script>
-import headerNav from '../nav/headerNav'
 export default {
 	data(){
 		return {
@@ -49,6 +47,8 @@ export default {
 	},
 	created(){
 		this.getAddress()
+        this.$store.commit('footerShow',false)
+        this.$store.commit('headerShow',{header:true,slot:'编辑收获地址'})
 	},
 	methods:{
 		getAddress(){
@@ -66,7 +66,7 @@ export default {
 	},
 	computed:{},
 	components:{
-		headerNav
+
 	}
 }
 </script>

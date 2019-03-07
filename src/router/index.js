@@ -11,6 +11,8 @@ import addressList from '@/components/address/addressList'
 import addAddress from '@/components/address/addAddress'
 import editAddress from '@/components/address/editAddress'
 
+import xscroll from '@/components/user/xscroll'
+
 Vue.use(Router)
 
 export default new Router({
@@ -43,6 +45,8 @@ export default new Router({
     // 增加收货地址
     {path: '/address/addAddress',name: 'addAddress',component: addAddress},
     // 修改收货地址
-    {path: '/address/editAddress',name: 'editAddress',component: editAddress}
+    {path: '/address/editAddress',name: 'editAddress',component: editAddress},
+    // x轴滚动
+    {path: '/user/xscroll',name: 'xscroll',component: xscroll}
   ]
 })

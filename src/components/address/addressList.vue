@@ -1,6 +1,5 @@
 <template>
 	<div class="address">
-		<header-nav>收货地址</header-nav>
 		<div class="address-list">
 			<div class="address-manager" v-for="(item,index) in addressList">
 				<ul>
@@ -25,7 +24,6 @@
 	</div>
 </template>
 <script>
-import headerNav from '../nav/headerNav'
 export default {
 	data(){
 		return {
@@ -35,7 +33,9 @@ export default {
 		}
 	},
 	created(){
-        this.getAddress()	
+        this.getAddress()
+        this.$store.commit('footerShow',false)	
+        this.$store.commit('headerShow',{header:true,slot:'收获地址'})
 	},
 	methods:{
 		getAddress(){
@@ -52,7 +52,7 @@ export default {
 	},
 	computed:{},
 	components:{
-		headerNav
+
 	}
 }
 </script>

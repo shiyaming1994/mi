@@ -1,6 +1,5 @@
 <template>
 	<div class="address">
-		<header-nav>新建收货地址</header-nav>
 		<div class="address-info">
 			<ul>
 				<li>
@@ -39,7 +38,6 @@
 	</div>
 </template>
 <script>
-import headerNav from '../nav/headerNav'
 export default {
 	data(){
 		return {
@@ -50,7 +48,10 @@ export default {
 			checked:true,
 		}
 	},
-	created(){},
+	created(){
+        this.$store.commit('headerShow',false)
+        this.$store.commit('headerShow',{header:true,slot:'新增收货地址'})
+    },
 	methods:{
 		add(){
 			let id = new Date().getTime()
@@ -68,7 +69,7 @@ export default {
 	},
 	computed:{},
 	components:{
-		headerNav
+
 	}
 }
 </script>

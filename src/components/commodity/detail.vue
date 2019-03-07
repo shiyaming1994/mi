@@ -62,7 +62,7 @@
 			<div class="buy-btn" @click="addCart">加入购物车</div>
 		</div>
 		<div class="btn-show-buy">
-			<router-link class="btn-show-buy-left left" to='/index'>
+			<router-link class="btn-show-buy-left left" to='/index' tag="div">
 				<i class="iconfont icon-shouye"></i>
 				<span>首页</span>
 			</router-link>
@@ -116,6 +116,7 @@ export default {
 	created(){
 		this.getList()
 		this.$store.commit('footerShow',false)
+        this.$store.commit('headerShow',{header:false})
 	},
 	methods:{
 		getList(){
@@ -133,10 +134,6 @@ export default {
                 			this.editionColor = this.editionList[0].color
                 			this.color_list = this.editionList[0].color[0].color_list
                 			this.Memory_img = this.editionList[0].color[0].img
-                			// this.Memory = item.edition[0].Memory
-                			// this.edition_price = item.edition[0].edition_price
-                			// this.edition_price = item.edition[0].color.color_list
-                			// console.log(this.editionList);
                 		}
                 	})
                 }).catch(function(error){
@@ -225,7 +222,7 @@ export default {
   height: 8.25rem;
 }
 .header-btn {
-	position: absolute;
+	position: fixed;   
 	top: .3rem;
 	left: .2rem;
 	display: block;
@@ -247,7 +244,7 @@ export default {
 }
 .btn-show-buy {
 	position: fixed;
-	bottom: .3rem;
+	bottom: -1.3rem;
 	left: .25rem;
 	right: .25rem;
 	width: 7rem;
@@ -362,7 +359,7 @@ export default {
     height: 1px;
     content: "";
     width: 100%;
-    border-top: 1px solid #999;
+    border-top: 1px solid #ccc;
     position: absolute;
     top: 100%;
     right: 0;
@@ -393,10 +390,10 @@ export default {
 }
 .buy-info {
 	position: fixed;
-	bottom: -9rem;
+	bottom: -10rem;
 	left: 0;
 	right: 0;
-	height: 9rem;
+	height: 10rem;
 	background-color: #fff;
 	border-top-left-radius: .2rem;
     border-top-right-radius: .2rem;
@@ -434,7 +431,7 @@ export default {
     left: 0;
     top: 0;
     border-radius: 0;
-    border: 1px solid #999;
+    border: 1px solid #ccc;
     -webkit-transform: scale(1);
     -webkit-transform-origin: 0 0;
     transform: scale(1);
@@ -459,9 +456,8 @@ export default {
 }
 .option-item {
 	position: relative;
-    padding: .24rem .32rem !important;
+    padding:  0 .32rem !important;
     height: .72rem;
-    line-height: .72rem;
     min-width: 1.45rem;
     box-sizing: border-box;
     padding: 0 .08rem;
@@ -473,28 +469,16 @@ export default {
     -webkit-justify-content: space-between;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid #999;
+    border: 1px solid #ccc;
     box-sizing : border-box;
+}
+.option-item p {
+    font-size: .3rem;
 }
 .option-item::before {
     border-color: rgba(0,0,0,.15);
     border-radius: 2px;
 }
-/* .option-item::before {
-    content: "";
-    pointer-events: none;
-    box-sizing: border-box;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    border-radius: 0;
-    -webkit-transform: scale(1);
-    -webkit-transform-origin: 0 0;
-    transform: scale(1);
-    transform-origin: 0 0;
-} */
 .options-item-color {
 	position: relative;
     padding: .24rem .32rem !important;
@@ -512,29 +496,9 @@ export default {
     text-align: center;
     padding: 0 .3rem;
     margin-right: .16rem;
-    border: 1px solid #999;
+    border: 1px solid #ccc;
     box-sizing : border-box;
 }
-/* .options-item-color>p::before {
-    border-color: rgba(0,0,0,.15);
-    border-radius: 2px;
-}
-.options-item-color>p::before {
-    content: "";
-    pointer-events: none;
-    box-sizing: border-box;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    border-radius: 0;
-    border: 1px solid #999;
-    -webkit-transform: scale(1);
-    -webkit-transform-origin: 0 0;
-    transform: scale(1);
-    transform-origin: 0 0;
-} */
 .option-count {
 	display: flex;
     -webkit-box-pack: justify;
@@ -545,7 +509,7 @@ export default {
 }
 .buy-option-info {
 	overflow: scroll;
-	height: 5rem;
+	height: 6rem;
 	padding-bottom: .5rem;
 }
 .buy-btn {
@@ -570,7 +534,7 @@ export default {
 	animation:moveShow .5s forwards;
 }
 @keyframes moveShow {
-	from {bottom:-9rem;}
+	from {bottom:-10rem;}
 	to{bottom:0rem;}
 }
 .by-animation-hide {
@@ -578,13 +542,13 @@ export default {
 }
 @keyframes moveHide {
 	from {bottom:0rem;}
-	to{bottom:-9rem;}
+	to{bottom:-10rem;}
 }
 .btn-show-buy {
-    animation:btnShow .35s forwards;
+    animation:btnShow .35s forwards .2s;
 }
 @keyframes btnShow {
-    from {bottom: -1rem;}
+    from {bottom: -1.3rem;}
     to{bottom: .3rem;}
 }
 </style>

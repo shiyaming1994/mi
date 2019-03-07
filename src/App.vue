@@ -1,27 +1,18 @@
 <template>
   <div id="app">
-    <!-- <header class="nav-header" v-if="show">
-      <div>
-        <div class="nav-header-goback" @click="goBack">
-          <i class="iconfont icon-return1"></i>
-        </div>
-      </div>
-      <div class="nav-header-title">{{ msg }}</div>
-      <div>
-        <div class="nav-header-search">
-          <i class="iconfont icon-sousuo"></i>
-        </div>
-      </div>
-    </header> -->
-      <router-view></router-view>
-      <transition name="fade">
-        <footer-nav v-if="$store.getters.footer"></footer-nav>
-      </transition>
+    <transition name="headerFade">
+        <header-nav v-show="$store.getters.header">{{ $store.getters.headerTitle }}</header-nav>
+    </transition>
+    <router-view></router-view>
+    <transition name="footerFade">
+        <footer-nav v-show="$store.getters.footer"></footer-nav>
+    </transition>
   </div>
 </template>
 
 <script>
 import footerNav from './components/nav/footerNav'
+import headerNav from './components/nav/headerNav'
 export default {
   data(){
     return {
@@ -43,6 +34,7 @@ export default {
     // }
   },
   components:{
+    headerNav,
     footerNav
   }
 }
@@ -129,4 +121,55 @@ p {
 .nav-header i {
   font-size: .35rem;
 }
+
+.footerFade-enter-active {
+  animation-name: footerFade-in;
+  animation-duration: .35s;
+}
+.footerFade-leave-active {
+  animation-name: footerFade-out;
+  animation-duration: .35s;
+}
+@keyframes footerFade-in {
+  to {
+    bottom: 0rem;
+  }
+  from {
+    bottom: -1rem;
+  }
+}
+@keyframes footerFade-out {
+  to {
+    bottom: -1rem;
+  }
+  from {
+    bottom: 0rem;
+  }
+}
+
+.headerFade-enter-active {
+  animation-name: headerFade-in;
+  animation-duration: .35s;
+}
+.headerFade-leave-active {
+  animation-name: headerFade-out;
+  animation-duration: .35s;
+}
+@keyframes headerFade-in {
+  to {
+    top: 0rem;
+  }
+  from {
+    top: -1rem;
+  }
+}
+@keyframes headerFade-out {
+  to {
+    top: -1rem;
+  }
+  from {
+    top: 0rem;
+  }
+}
+
 </style>

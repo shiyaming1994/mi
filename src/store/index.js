@@ -12,7 +12,9 @@ export default new Vuex.Store({
 		car:car,
 		address:address,
 		order:order,
-		footerShow:false
+		footerShow:false,
+		headerShow:false,
+		headerTitle:''
 	},
 	mutations: {
 		// shoppingCartAdd(state){
@@ -21,6 +23,11 @@ export default new Vuex.Store({
 		// shoppingCartRemove(state){
 		// 	state.count--
 		// },
+		// 顶部显示
+		headerShow(state,status){
+			state.headerShow = status.header
+			state.headerTitle = status.slot
+		},
 		// 底部显示
 		footerShow(state,status){
 			state.footerShow = status
@@ -113,7 +120,7 @@ export default new Vuex.Store({
 		},
 		// 生成订单
 		addOrder(state,order){
-			state.order.push(order)
+			state.order.unshift(order)
 			localStorage.setItem('order',JSON.stringify(state.order))
 		},
 		// 付款
@@ -151,6 +158,12 @@ export default new Vuex.Store({
 		},
 		footer(state){
 			return state.footerShow
+		},
+		header(state){
+			return state.headerShow
+		},
+		headerTitle(state){
+			return state.headerTitle
 		}
 	}
 })

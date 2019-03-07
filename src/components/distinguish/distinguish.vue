@@ -1,7 +1,6 @@
 <template>
 <div class="search">
     <!-- 搜索导航 -->
-    <header-nav>分类</header-nav>
     <div class="shop">
     <!-- 左边 -->
         <div class="menu-wrapper">
@@ -38,13 +37,10 @@
             </ul>
         </div>
     </div>
-    <!-- <footer-nav></footer-nav> -->
 </div>
 </template>
 
 <script>
-import headerNav from '../nav/headerNav'
-// import footerNav from '../nav/footerNav'
 import BScroll from 'better-scroll'
 export default {
   name: 'chat',
@@ -57,6 +53,7 @@ export default {
   },
   created(){
     this.$store.commit('footerShow',true)
+    this.$store.commit('headerShow',{header:true,slot:'分类'})
   },
   computed: {
     //动态绑定class类名
@@ -72,8 +69,7 @@ export default {
     this.getList()
   },
   components: {
-    // footerNav,
-    headerNav
+
   },
   watch:{
     searchgoods(){
