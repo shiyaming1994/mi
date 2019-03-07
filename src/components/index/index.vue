@@ -1,5 +1,6 @@
 <template>
 	<div class="index">
+        <mt-loadmore ref="loadmore" :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="isAutoFill">
 		<div class="header">
   			<div class="user"></div>
   			<div class="search">
@@ -47,9 +48,7 @@
   		</div>
   		<div class="line"></div>
   		<div class="goods clearfix">
-
-        <mt-loadmore ref="loadmore">
-            <ul>
+            <ul class="clearfix">
                 <router-link tag="li" class="goods-list" v-for="(item,index) in list" :to="'/commodity/detail/'+item.id" :key="index">
                     <div class="goods-list-img">
                         <img :src="item.img" alt="">
@@ -61,8 +60,8 @@
                     </div>
                 </router-link>
             </ul>
-        </mt-loadmore>	
   		</div>
+        </mt-loadmore>  
 	</div>
 </template>
 <script>
@@ -71,7 +70,10 @@ export default {
 	data(){
 		return {
 			list:[],
-            rotationChart:[]
+            rotationChart:[],
+            allLoaded:false,
+            isAutoFill:false,
+            page:1
 		}
 	},
 	created(){
@@ -82,7 +84,7 @@ export default {
 	}, 
 	methods:{
 		getList(){
-            this.$http.get("https://shiyaming1994.github.io/mi/static/homeGoods.json")
+            this.$http.get("https://shiyaming1994.github.io/mi/static/homeGoods.json?page="+this.page)
                 .then(res=>{
                     this.list = res.data
                 }).catch(function(error){
@@ -97,10 +99,37 @@ export default {
                     console.log("error init."+error)
                 })
         },
-        // loadBottom(){
-        //     this.allLoaded = true;
-        //     this.$refs.loadmore.onBottomLoaded();
-        // }
+        loadBottom(){
+            let than = this
+            this.page += 1
+            this.$http.get("https://shiyaming1994.github.io/mi/static/homeGoods.json?page="+this.page)
+                .then(res=>{  
+                    setTimeout(function(){
+                        if (than.page == 5) {
+                            than.allLoaded = true;
+                        }else{
+                            than.list = than.list.concat(res.data)
+                            than.$refs.loadmore.onBottomLoaded(); 
+                        } 
+                    },300)    
+                }).catch(function(error){
+                    console.log("error init."+error)
+                })
+        },
+        loadTop(){
+            let than = this
+            this.page = 1
+            this.$http.get("https://shiyaming1994.github.io/mi/static/homeGoods.json?page="+this.page)
+                .then(res=>{  
+                    setTimeout(function(){
+                        than.list = res.data
+                        than.$refs.loadmore.onTopLoaded(); 
+                        than.allLoaded = false;
+                    },300)    
+                }).catch(function(error){
+                    console.log("error init."+error)
+                })
+        }
 	},
 	computed:{},
 	components:{
@@ -110,7 +139,13 @@ export default {
 </script>
 <style scoped>
 .index {
-  padding-bottom: 1rem;
+    height: 100vh;
+    padding-bottom: 1rem;
+    overflow:auto;
+    box-sizing:border-box;
+}
+.mint-loadmore {
+    -webkit-overflow-scrolling: touch;
 }
 .header {
 	 display: -webkit-box;

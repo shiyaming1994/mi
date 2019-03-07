@@ -203,7 +203,7 @@ export default {
     padding: 0 .3rem;
 }  
 .shops-li {
-    padding-bottom: .15rem;
+    /* padding-bottom: .15rem; */
 }
 .itemList-img {
     height: 2.05rem;
