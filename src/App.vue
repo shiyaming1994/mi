@@ -3,9 +3,14 @@
     <transition name="headerFade">
         <header-nav v-show="$store.getters.header">{{ $store.getters.headerTitle }}</header-nav>
     </transition>
-    <router-view></router-view>
+
+    <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
+    
     <transition name="footerFade">
-        <footer-nav v-show="$store.getters.footer"></footer-nav>
+      <footer-nav v-show="$store.getters.footer"></footer-nav>
     </transition>
   </div>
 </template>
@@ -28,11 +33,11 @@ export default {
   methods:{
 
   },
-  watch:{
-    //   '$route.path': function (newVal, oldVal){
-    //      console.log(newVal+'=========='+oldVal);
-    // }
-  },
+  // watch:{
+  //     '$route.path': function (newVal, oldVal){
+  //        console.log(newVal+'=========='+oldVal);
+  //   }
+  // },
   components:{
     headerNav,
     footerNav

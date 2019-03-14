@@ -47,8 +47,8 @@ export default {
 	},
 	created(){
 		this.getOrder()
-        this.$store.commit('footerShow',false)
-        this.$store.commit('headerShow',{header:true,slot:'我的订单'})
+        // this.$store.commit('footerShow',false)
+        // this.$store.commit('headerShow',{header:true,slot:'我的订单'})
 	},
 	methods:{
 		// 获取订单列表

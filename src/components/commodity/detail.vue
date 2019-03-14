@@ -115,8 +115,8 @@ export default {
 	},
 	created(){
 		this.getList()
-		this.$store.commit('footerShow',false)
-        this.$store.commit('headerShow',{header:false})
+		// this.$store.commit('footerShow',false)
+  //       this.$store.commit('headerShow',{header:false})
 	},
 	methods:{
 		getList(){

@@ -52,8 +52,8 @@ export default {
     }
   },
   created(){
-    this.$store.commit('footerShow',true)
-    this.$store.commit('headerShow',{header:true,slot:'分类'})
+    // this.$store.commit('footerShow',true)
+    // this.$store.commit('headerShow',{header:true,slot:'分类'})
   },
   computed: {
     //动态绑定class类名

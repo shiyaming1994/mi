@@ -34,8 +34,8 @@ export default {
 	},
 	created(){
         this.getAddress()
-        this.$store.commit('footerShow',false)	
-        this.$store.commit('headerShow',{header:true,slot:'收获地址'})
+        // this.$store.commit('footerShow',false)	
+        // this.$store.commit('headerShow',{header:true,slot:'收获地址'})
 	},
 	methods:{
 		getAddress(){

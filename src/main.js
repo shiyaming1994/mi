@@ -22,6 +22,20 @@ Vue.component(Loadmore.name, Loadmore);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 
+router.beforeEach((to, from, next) => {
+    if (to.meta.headerShow) {
+        store.commit('headerShow',{header:true,slot:to.meta.title})
+    }else{
+        store.commit('headerShow',{header:false})
+    }
+    if (to.meta.footerShow) {
+        store.commit('footerShow',true)
+    }else{
+        store.commit('footerShow',false)
+    }
+    next()
+})
+
 import VuePreview from 'vue-preview'
 Vue.use(VuePreview)
 // 添加请求拦截器

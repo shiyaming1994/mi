@@ -79,8 +79,8 @@ export default {
 	created(){
         this.getList()
 		this.getWheel()
-        this.$store.commit('footerShow',true)
-        this.$store.commit('headerShow',{header:false})
+        // this.$store.commit('footerShow',true)
+        // this.$store.commit('headerShow',{header:false})
 	}, 
 	methods:{
 		getList(){

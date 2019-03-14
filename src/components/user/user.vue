@@ -64,8 +64,8 @@ export default {
 		return {}
 	},
 	created(){
-		this.$store.commit('footerShow',true)
-        this.$store.commit('headerShow',{header:false})
+		// this.$store.commit('footerShow',true)
+  //       this.$store.commit('headerShow',{header:false})
 	},
 	methods:{},
 	computed:{},

@@ -72,8 +72,8 @@ export default {
 	created(){
 		this.getGoods()
 		this.getAddress()
-        this.$store.commit('footerShow',false)
-        this.$store.commit('headerShow',{header:true,slot:'用户结算'})
+        // this.$store.commit('footerShow',false)
+        // this.$store.commit('headerShow',{header:true,slot:'用户结算'})
 	},
 	methods:{
 		submit(){

@@ -104,6 +104,7 @@ export default {
             let idarr = [id]
             this.cartList.splice(index,1)
             this.$store.commit('removeGoods',idarr)
+            this.getAllCount()
         },
         settlement(){
             let order = {}
@@ -335,7 +336,6 @@ export default {
     color: #999;
     width: 100%;
     text-align: center;
-    padding-top: .15rem;
 }
 .btn {
     display: block;

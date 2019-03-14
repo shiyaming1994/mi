@@ -49,8 +49,8 @@ export default {
 		}
 	},
 	created(){
-        this.$store.commit('headerShow',false)
-        this.$store.commit('headerShow',{header:true,slot:'新增收货地址'})
+        // this.$store.commit('headerShow',false)
+        // this.$store.commit('headerShow',{header:true,slot:'新增收货地址'})
     },
 	methods:{
 		add(){
